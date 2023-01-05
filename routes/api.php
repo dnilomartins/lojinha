@@ -21,5 +21,7 @@ use App\Http\Controllers\ProductController;
 Route::apiResource('users', UserController::class);
 Route::apiResource('carts', CartController::class)->only('show', 'index');
 Route::put('/carts/{cart}/add-product', [CartController::class, 'addProduct']);
+Route::put('/carts/{cart}/remove-product', [CartController::class, 'removeProduct']);
+Route::put('/carts/{cart}/remove-all-products', [CartController::class, 'removeAllProducts']);
 Route::apiResource('products', ProductController::class);
 Route::apiResource('orders', OrderController::class);
