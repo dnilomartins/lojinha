@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use Illuminate\Http\Request;
+use App\Http\Requests\AddProductRequest;
 
 class CartController extends Controller
 {
@@ -16,7 +16,10 @@ class CartController extends Controller
     {
         return $cart;
     }
-
     
-
+    public function addProduct(AddProductRequest $request, Cart $cart)
+    {
+        $cart->products()->attach($request->product_id);
+        return $cart;
+    }
 }

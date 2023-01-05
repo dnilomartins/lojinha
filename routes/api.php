@@ -20,5 +20,6 @@ use App\Http\Controllers\ProductController;
 
 Route::apiResource('users', UserController::class);
 Route::apiResource('carts', CartController::class)->only('show', 'index');
+Route::put('/carts/{cart}/add-product', [CartController::class, 'addProduct']);
 Route::apiResource('products', ProductController::class);
 Route::apiResource('orders', OrderController::class);
