@@ -9,9 +9,13 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'cart_products' => 'array',
+    ];
+
     protected $fillable = [
-        'cart_itens',
-        'total_amout',
+        'user_id',
+        'cart_products'
     ];
 
     public function user()

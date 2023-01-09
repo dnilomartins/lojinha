@@ -24,8 +24,8 @@ class StoreOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'cart_items' => ['required', 'alpha'],
-            'total_amount' => ['required', 'integer']
+            'cart_id' => ['required', 'int', 'exists:carts,id'],
+            'user_id' => ['required', 'int', 'exists:users,id'],
         ];
     }
 }

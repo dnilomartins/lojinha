@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreOrderRequest;
@@ -15,18 +16,17 @@ class OrderController extends Controller
 
     public function store(StoreOrderRequest $request)
     {
-        $order = $request->validated();
-        return Order::create($order);
+        $cart = Cart::with('products')->findOrFail($request->cart_id);
+        return Order::create(
+            [
+                'cart_products' => $cart->toArray(),
+                'user_id' => $request->user_id,
+            ],
+        );
     }
 
     public function show(Order $order)
     {
-        return $order;
-    }
-
-    public function updated(Request $request, Order $order)
-    {
-        $order->updated($request->validated());
         return $order;
     }
 
